@@ -1,0 +1,22 @@
+.categoryMenu{
+    width: 100vw;
+    height: 100px;
+    background-color: #EDEDED;
+    padding: 50px 0;
+    margin-top: -10px;
+  
+}
+.categorySwipe{
+    padding-right: 15px;
+}
+
+.categoryItem{
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.categoryName{
+    font-size: small;
+}

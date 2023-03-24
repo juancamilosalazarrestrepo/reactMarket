@@ -1,5 +1,6 @@
 const express = require('express')
 const v1UserRouter = require('./v1/routes/userRoutes')
+const v1LoginRouter = require('./v1/routes/loginRoute')
 const { Connection } = require('./database/database.js')
 const cors = require('cors')
 
@@ -10,6 +11,7 @@ app.use(cors())
 app.use(express.static('public'))
 
 app.use('/api/v1/users', v1UserRouter)
+app.use('/api/v1/login', v1LoginRouter)
 
 async function AllConnection() {
   const db = await Connection()

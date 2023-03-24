@@ -1,0 +1,37 @@
+.navBar {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  width: 100%;
+  box-shadow: 0px 10px 20px -3px rgba(0, 0, 0, 0.1);
+
+  background-color: #f5f5f7;
+}
+
+.navBarList {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  padding: 0 80px;
+
+}
+
+.logo{
+  margin-top: 10px;
+ 
+}
+
+.navLink {
+  text-decoration: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
+}
+
+li {
+  list-style: none;
+}

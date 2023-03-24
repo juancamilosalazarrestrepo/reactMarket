@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt')
+const saltRounds = 10
 const userService = require('../services/userService')
 
 const getAllUsers = async (req, res) => {
@@ -12,13 +14,19 @@ const getOneUser = async (req, res) => {
 
 const createNewUser = async (req, res) => {
   const { body } = req
-  console.log('request', body)
+
   if (!body.name || !body.password || !body.email || !body.phone) {
     return
   }
+
+  const { password } = body
+
+  const salt = bcrypt.genSaltSync(saltRounds)
+  const encryptedPassword = bcrypt.hashSync(password, salt)
+
   const newUser = {
     name: body.name,
-    password: body.password,
+    password: encryptedPassword,
     email: body.email,
     phone: body.phone
   }
@@ -39,6 +47,11 @@ const updateOneUser = (req, res) => {
     email: body.email,
     phone: body.phone
   }
+
+  //sacar a middleware validator token
+
+  //hasta aqui middleware valid
+
   const updatedUser = userService.updateOneUser(req.params.userId, userUpdate)
   res.send(updatedUser)
 }

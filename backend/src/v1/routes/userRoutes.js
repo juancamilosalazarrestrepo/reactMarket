@@ -1,12 +1,13 @@
 const express = require('express')
-const router = express.Router()
+const userRouter = express.Router()
 const userController = require('../../controllers/userController.js')
+const validateToken = require('../../middlewares/validateToken')
 
-router
+userRouter
   .get('/', userController.getAllUsers)
   .get('/:userId', userController.getOneUser)
   .post('/', userController.createNewUser)
-  .patch('/:userId', userController.updateOneUser)
-  .delete('/:userId', userController.deleteOneUser)
+  .patch('/:userId', validateToken, userController.updateOneUser)
+  .delete('/:userId', validateToken, userController.deleteOneUser)
 
-module.exports = router
+module.exports = userRouter

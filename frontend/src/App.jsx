@@ -1,7 +1,10 @@
-import "./App.css";
+import './App.css'
+import { routes } from './routes/routes'
 
-function App() {
-  return <div className="App">Martket</div>;
+function App () {
+  return (
+    routes
+  )
 }
 
-export default App;
+export default App
