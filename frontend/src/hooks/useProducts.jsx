@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import products from '../services/productsService'
+import { products } from '../services/productsService'
 
-export function useProducts() {
+export function useProducts () {
   const [productsList, setProductsList] = useState(null)
 
   useEffect(() => {

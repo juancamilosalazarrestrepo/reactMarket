@@ -29,6 +29,10 @@
 .navLink {
   text-decoration: none;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #00000099;
+}
+
+.navLink:hover{
   color: black;
 }
 

@@ -1,7 +1,7 @@
 import Banners from '../../components/Banners/banners'
 import CategoryMenu from '../../components/CategoryMenu/CategoryMenu'
 import NavBar from '../../components/navBar/NavBar'
-import ProductList from './components/ProductsList'
+import ProductList from '../../components/ProductsList/ProductsList'
 import './Home.css'
 
 function Home () {

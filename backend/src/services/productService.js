@@ -9,12 +9,15 @@ const getAllProducts = async () => {
   return AllProducts
 }
 const getOneProduct = async (id) => {
-  const product = await db.query('SELECT * FROM products WHERE id = :id', {
+  let product = await db.query('SELECT * FROM products WHERE id = :id', {
     replacements: {
       id
     },
     type: QueryTypes.SELECT
   })
+  if (product.length === 0) {
+    product = [{ error: 'El Producto No Existe' }]
+  }
   return product
 }
 const createNewProduct = async (newProduct) => {

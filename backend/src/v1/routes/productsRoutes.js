@@ -5,7 +5,7 @@ const validateToken = require('../../middlewares/validateToken')
 
 productsRouter
   .get('/', productsController.getAllProducts)
-  .get('/:userId', productsController.getOneProduct)
+  .get('/:productId', productsController.getOneProduct)
   .post('/', productsController.createNewProduct)
   .patch('/:userId', validateToken, productsController.updateOneProduct)
   .delete('/:userId', validateToken, productsController.deleteOneProduct)

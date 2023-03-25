@@ -7,7 +7,7 @@ const getAllProducts = async (req, res) => {
 
 const getOneProduct = async (req, res) => {
   const product = await productService.getOneProduct(req.params.productId)
-  res.json(product)
+  res.json({ status: 'OK', data: product })
 }
 
 const createNewProduct = async (req, res) => {
