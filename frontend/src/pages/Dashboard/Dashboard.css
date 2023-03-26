@@ -1,0 +1,22 @@
+.dashboardContainer {
+  width: 100%;
+  height: 100vh;
+  background-color: #ececec;
+}
+
+.contentDashboard {
+  position: absolute;
+  width: calc(100% - 280px);
+  left: 280px;
+  min-height: 100vh;
+  transition: 0.5s;
+}
+
+.dashboardBar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    height: 70px;
+}

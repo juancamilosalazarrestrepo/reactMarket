@@ -30,7 +30,7 @@ function Register() {
       navigate('/login')
     }
 
-    swal('error',response.error,'error')
+    swal('error', response.error, 'error')
   }
 
   return (
@@ -61,7 +61,7 @@ function Register() {
           placeholder='contraseña'
           onChange={(event) => setPassword(event.target.value)}
         />
-        <button>Crear Usuario</button>
+        <button className='buttonRegister'>Crear Usuario</button>
         <legend>
           si ya tienes una cuenta <Link to='/login'>Inicia Sesion</Link>{' '}
         </legend>

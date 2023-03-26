@@ -12,14 +12,13 @@ const getOneProduct = async (req, res) => {
 
 const createNewProduct = async (req, res) => {
   const { body } = req
-
+  console.log('bodyyyy', req.file)
   if (
     !body.name ||
     !body.price ||
     !body.description ||
     !body.category ||
     !body.brand ||
-    !body.image ||
     !body.stock
   ) {
     return
@@ -31,7 +30,7 @@ const createNewProduct = async (req, res) => {
     description: body.description,
     brand: body.brand,
     category: body.category,
-    image: body.image,
+    image: req.file.filename,
     stock: body.stock,
     offer: body.offer ? body.offer : 0,
     offerPrice: body.offerPrice ? body.offerPrice : 0
@@ -39,7 +38,7 @@ const createNewProduct = async (req, res) => {
   console.log('create product', newProduct)
   const createdProduct = await productService.createNewProduct(newProduct)
   console.log('created product', createdProduct)
-  res.status(201).send({ status: 'OK', data: createdProduct })
+  res.status(201).send({ status: 'OK' })
 }
 
 const updateOneProduct = (req, res) => {
@@ -69,7 +68,7 @@ const updateOneProduct = (req, res) => {
 
 const deleteOneProduct = (req, res) => {
   productService.deleteOneProduct(req.params.productId)
-  res.send('Producto Eliminado')
+  res.send({ status: 'OK', data: 'Producto Eliminado' })
 }
 
 module.exports = {

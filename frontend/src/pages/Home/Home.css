@@ -2,10 +2,6 @@
     width: 100%;
     margin: 0px;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-self: center;
   }
 
   .content{
@@ -15,3 +11,18 @@
     
   }
 
+  .offerSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .titleOfferSection{
+    font-size: larger;
+    font-weight: 500;
+    margin-left: 16%;
+    align-self: flex-start;
+    margin-top: 50px;
+  }
+
+ 

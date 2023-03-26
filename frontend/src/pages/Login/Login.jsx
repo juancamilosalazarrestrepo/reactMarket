@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import swal from 'sweetalert'
 import './Login.css'
 
-function Login () {
+function Login() {
   const navigate = useNavigate()
   const { user } = useUser()
   const [email, setEmail] = useState(null)
@@ -49,7 +49,7 @@ function Login () {
           onChange={(event) => setPassword(event.target.value)}
         />
 
-        <button>Iniciar Sesion</button>
+        <button className='buttonLogin'>Iniciar Sesion</button>
         <legend>
           si no tienes una cuenta <Link to='/register'>registrate</Link>{' '}
         </legend>

@@ -9,27 +9,27 @@ function NavBar() {
     <div className='navBar'>
       <ul className='navBarList'>
         <li>
-          <Link to='/login' className='navLink'>
+          <Link to='/' className='navLink'>
             <img src={logo} width={220} className='logo' />
           </Link>
         </li>
         <li>
-          <Link to='/login' className='navLink'>
+          <Link to='/' className='navLink'>
             Portatiles
           </Link>
         </li>
         <li>
-          <Link to='/login' className='navLink'>
+          <Link to='/' className='navLink'>
             Computadores
           </Link>
         </li>
         <li>
-          <Link to='/login' className='navLink'>
+          <Link to='/' className='navLink'>
             Componentes
           </Link>
         </li>
         <li>
-          <Link to='/login' className='navLink'>
+          <Link to='/' className='navLink'>
             Accesorios
           </Link>
         </li>

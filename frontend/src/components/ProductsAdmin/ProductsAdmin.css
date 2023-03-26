@@ -1,0 +1,45 @@
+.listProductsContainer {
+  width: 80%;
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 19px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  height: 80%;
+}
+
+.listProducts {
+  height: 500px;
+  overflow-y: scroll;
+  
+}
+
+
+.productRow {
+  height: 50px;
+  width: 100%;
+  border: 1px solid #000;
+
+}
+
+.productsTable {
+  width: 100%;
+}
+
+.buttonTable{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #02315c;
+    border-radius: 100px;
+
+    width: 40px;
+    height: 40px;
+}
+
+.buttonTable:hover{
+    color: #fff;
+    background: #02315c;
+}
+

@@ -1,0 +1,48 @@
+.contentProduct {
+  margin-top: 70px;
+  height: calc(100vh - 70px);
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.productContainer{
+    display: flex;
+    justify-content: space-around;
+    gap: 40px;
+    width: 900px;
+    height: 400px;
+    border-radius: 19px;
+    padding: 40px 70px;
+    margin-top: 30px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.productImg{
+width: 350px;
+}
+
+.productInfo{
+    padding-top: 40px;
+}
+
+
+.buttonAddToCar{
+    background-color: #02315c;
+    font-size: medium;
+    border: none;
+    height: 40px;
+    padding: 0 20px;
+    color: #ececec;
+    border-radius: 4px;
+    
+}
+
+.buttonAddToCar:hover{
+    background-color: #5694cc;
+}
+
+.productDescription{
+    max-height: 200px;
+    overflow-y: scroll;
+}
