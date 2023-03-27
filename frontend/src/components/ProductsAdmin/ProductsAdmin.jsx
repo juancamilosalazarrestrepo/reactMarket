@@ -9,7 +9,7 @@ import { deleteProduct } from '../../services/productsService'
 
 import './ProductsAdmin.css'
 
-function ProductsAdmin() {
+function ProductsAdmin () {
   const navigate = useNavigate()
   const { productsList } = useProducts()
   const { user } = useUser()
@@ -113,9 +113,7 @@ function ProductsAdmin() {
   ]
 
   const handleDeleteProduct = async (idProduct, user) => {
-    console.log(idProduct)
-    const productDeleted = await deleteProduct(idProduct, user)
-    console.log(productDeleted)
+    await deleteProduct(idProduct, user)
     setRows(rows.filter((row) => row.id !== idProduct))
   }
 

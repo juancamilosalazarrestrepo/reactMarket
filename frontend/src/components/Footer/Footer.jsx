@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import logo from '../../assets/brand/logoarcadiablanco.png'
+import { useUser } from '../../hooks/useUser'
 import './Footer.css'
 
-function Footer() {
+function Footer () {
+  const { user } = useUser()
   return (
     <div className='footer'>
       <div className='footerSection'>
@@ -27,9 +29,17 @@ function Footer() {
       </div>
       <div className='footerSection'>
         <h3 className='footerLink'>Administracion</h3>
-        <Link to='/dashboard/products' className='footerLink'>
-          Panel administrativo
-        </Link>
+        {user
+          ? (
+            <Link
+              to='/dashboard/products'
+              className='footerLink'
+              state={{ user }}
+            >
+              Panel administrativo
+            </Link>
+            )
+          : null}
       </div>
     </div>
   )

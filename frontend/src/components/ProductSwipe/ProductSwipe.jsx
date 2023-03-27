@@ -1,4 +1,3 @@
-import { useProducts } from '../../hooks/useProducts'
 import ProductCard from '../ProductCard/ProductCard'
 import { Swiper, SwiperSlide } from 'swiper/react'
 

@@ -12,11 +12,17 @@
   transition: 0.5s;
 }
 
-.dashboardBar{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    height: 70px;
+.dashboardBar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  height: 70px;
+}
+
+.dashboardBar span {
+  font-size: x-large;
+  font-weight: 500;
+  color: #02315c;
 }

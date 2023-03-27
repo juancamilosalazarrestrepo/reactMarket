@@ -1,18 +1,18 @@
-.contentNotFound{
-    width: 100%;
-    height: calc(100vh - 260px);
-    margin-top: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.contentNotFound {
+  width: 100%;
+  height: calc(100vh - 260px);
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .contentNotFound span {
-    font-size: 150px;
-    margin: 0;
+  font-size: 150px;
+  margin: 0;
 }
 .contentNotFound p {
-    font-size: 25px;
-    margin: 0;
+  font-size: 25px;
+  margin: 0;
 }

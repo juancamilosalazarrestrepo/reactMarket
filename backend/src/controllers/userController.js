@@ -30,15 +30,12 @@ const createNewUser = async (req, res) => {
     email: body.email,
     phone: body.phone
   }
-  console.log('create user', newUser)
   const createdUser = await userService.createNewUser(newUser)
-  console.log('created user', createdUser)
   res.status(201).send({ status: 'OK', data: createdUser })
 }
 
 const updateOneUser = (req, res) => {
   const { body } = req
-  console.log('request', body)
   if (!body.name || !body.email || !body.phone) {
     return
   }
@@ -47,10 +44,6 @@ const updateOneUser = (req, res) => {
     email: body.email,
     phone: body.phone
   }
-
-  //sacar a middleware validator token
-
-  //hasta aqui middleware valid
 
   const updatedUser = userService.updateOneUser(req.params.userId, userUpdate)
   res.send(updatedUser)

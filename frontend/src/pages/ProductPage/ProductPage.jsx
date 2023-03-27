@@ -7,12 +7,11 @@ import { useProductsById } from '../../hooks/useProductByID'
 import './ProductPage.css'
 import Footer from '../../components/Footer/Footer'
 
-function ProductPage() {
+function ProductPage () {
   const { idProduct } = useParams()
   const { product } = useProductsById(idProduct)
   const { user } = useUser()
   const navigate = useNavigate()
-  const [cartData, setCartData] = useState(null)
   const [cuantityInCart, setCuantityInCart] = useState(null)
 
   useEffect(() => {
@@ -30,10 +29,7 @@ function ProductPage() {
       const cartOfUser = cart.cartData.filter(
         (cartUser) => cartUser.emailUser === user.email
       )
-      console.log(
-        cartOfUser[0].products.filter((product) => product.id === idProduct)
-      )
-      setCartData(cart)
+
       const productInCart = cartOfUser[0].products.filter(
         (product) => product.id === idProduct
       )
@@ -45,9 +41,6 @@ function ProductPage() {
   }
 
   const addToCart = (operator) => {
-    console.log(product)
-
-    console.log(user)
     let cart = window.localStorage.getItem('cart')
     if (cart) {
       cart = JSON.parse(cart)
@@ -110,23 +103,27 @@ function ProductPage() {
         </div>
         <div className='productInfo'>
           <span>{product.name}</span>
-          {product.offer ? (
-            <div className='offerPriceContainer'>
-              <span className='offerPrice'>$ {product.offerPrice}</span>
-              <span className='oldPrice'>$ {product.price}</span>
-            </div>
-          ) : (
-            <span className='offerPrice'> $ {product.price}</span>
-          )}
+          {product.offer
+            ? (
+              <div className='offerPriceContainer'>
+                <span className='offerPrice'>$ {product.offerPrice}</span>
+                <span className='oldPrice'>$ {product.price}</span>
+              </div>
+              )
+            : (
+              <span className='offerPrice'> $ {product.price}</span>
+              )}
           <p className='productDescription'>{product.description}</p>
 
-          {cuantityInCart ? (
-            renderQuantityControl()
-          ) : (
-            <button className='buttonAddToCar' onClick={() => addToCart('new')}>
-              Agregar al Carrito
-            </button>
-          )}
+          {cuantityInCart
+            ? (
+                renderQuantityControl()
+              )
+            : (
+              <button className='buttonAddToCar' onClick={() => addToCart('new')}>
+                Agregar al Carrito
+              </button>
+              )}
         </div>
       </div>
     )

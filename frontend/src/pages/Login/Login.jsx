@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import swal from 'sweetalert'
 import './Login.css'
 
-function Login() {
+function Login () {
   const navigate = useNavigate()
   const { user } = useUser()
   const [loading, setLoading] = useState(false)
@@ -20,7 +20,6 @@ function Login() {
   } = useForm()
 
   useEffect(() => {
-    console.log(user)
     if (user) {
       navigate('/')
     }

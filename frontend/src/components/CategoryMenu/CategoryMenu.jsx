@@ -24,7 +24,7 @@ import coolerIcon from '../../assets/icons/icono-cooling.png'
 
 import './CategoryMenu.css'
 
-function CategoryMenu() {
+function CategoryMenu () {
   const categories = [
     {
       name: 'CPU',
@@ -99,13 +99,14 @@ function CategoryMenu() {
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           spaceBetween={0}
           slidesPerView={16}
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => console.log(swiper)}
         >
           {categories.map((category, index) => {
             return (
               <SwiperSlide className='categoryItem' key={index}>
-                <Link to={`/products/${category.name}`} className='categoryLink'>
+                <Link
+                  to={`/products/${category.name}`}
+                  className='categoryLink'
+                >
                   <img src={category.icon} width={67} />
                   <p className='categoryName'>{category.name}</p>
                 </Link>

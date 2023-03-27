@@ -1,5 +1,4 @@
 const createUser = async ({ name, password, email, phone }) => {
-  console.log(name)
   let userCreated = null
   const data = {
     name,
@@ -7,22 +6,20 @@ const createUser = async ({ name, password, email, phone }) => {
     email,
     phone
   }
-  console.log('data', data)
-  await fetch('http://localhost:3500/api/v1/users', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log('respuesta', data)
-      userCreated = data
+
+  try {
+    const response = await fetch('http://localhost:3500/api/v1/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
     })
-    .catch((error) => {
-      userCreated = error
-    })
+    const dataResponse = await response.json()
+    userCreated = dataResponse
+  } catch (error) {
+    userCreated = error
+  }
 
   return userCreated
 }

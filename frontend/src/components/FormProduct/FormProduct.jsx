@@ -1,14 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { createProduct, editProduct } from '../../services/productsService'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import { useProductsById } from '../../hooks/useProductByID'
 import { useUser } from '../../hooks/useUser'
-import './FormProduct.css'
+import { useCategories } from '../../hooks/useCategories'
+import { Backdrop, CircularProgress } from '@mui/material'
 
-function FormProduct() {
-  const { idProduct } = useParams()
-  const { product } = useProductsById(idProduct)
+import './FormProduct.css'
+import swal from 'sweetalert'
+
+function FormProduct () {
+  let { idProduct } = useParams()
+  let { product } = useProductsById(idProduct)
   const { user } = useUser()
+  const { categoriesList } = useCategories()
   const [nameProduct, setNameProduct] = useState('')
   const [price, setPrice] = useState('')
   const [brand, setBrand] = useState('')
@@ -18,10 +23,13 @@ function FormProduct() {
   const [offerPrice, setOfferPrice] = useState('')
   const [image, setImage] = useState(null)
   const [description, setDescription] = useState('')
+  const [loading, setLoading] = useState(false)
+  const formRef = useRef(null)
+  const location = useLocation()
+  const { state } = useLocation()
 
   useEffect(() => {
-    console.log(idProduct, product)
-    if (product) {
+    if (product && !product.error && idProduct) {
       setNameProduct(product.name)
       setPrice(product.price)
       setBrand(product.brand)
@@ -31,11 +39,26 @@ function FormProduct() {
       setOfferPrice(product.offerPrice)
       setDescription(product.description)
     }
-  }, [product])
+  }, [product, idProduct])
+
+  useEffect(() => {
+    if (state) {
+      idProduct = null
+      product = { error: 'no hay producto' }
+      setNameProduct('')
+      setPrice('')
+      setBrand('')
+      setCategory('')
+      setStock(0)
+      setOffer('')
+      setOfferPrice('')
+      setDescription('')
+    }
+  }, [location, product])
 
   const handleCreateProduct = async (event) => {
     event.preventDefault()
-    console.log(image)
+    setLoading(true)
     const formData = new FormData()
     formData.append('name', nameProduct)
     formData.append('price', price)
@@ -47,15 +70,14 @@ function FormProduct() {
     formData.append('offer', offer)
     formData.append('image', image)
 
-    console.log('data', console.log(formData.getAll('image')))
-
-    const productCreated = await createProduct(formData)
-    console.log(productCreated)
+    await createProduct(formData)
+    swal('Buen Trabajo', 'producto Creado con exito', 'success')
+    setLoading(false)
   }
 
   const handleEditProduct = async (event) => {
     event.preventDefault()
-    console.log(image)
+    setLoading(true)
     const formData = new FormData()
     formData.append('name', nameProduct)
     formData.append('price', price)
@@ -67,24 +89,31 @@ function FormProduct() {
     formData.append('offer', offer)
     formData.append('image', image)
 
-    const productEdited = await editProduct(formData, idProduct, user)
+    await editProduct(formData, idProduct, user)
+    swal('Buen Trabajo', 'producto Editado con exito', 'success')
+    setLoading(false)
   }
 
-  return (
-    <div className='container'>
+  const renderForm = (productNull) => {
+    return (
       <form
         className='productForm'
-        onSubmit={product ? handleEditProduct : handleCreateProduct}
+        ref={formRef}
+        onSubmit={
+          product && !product.error ? handleEditProduct : handleCreateProduct
+        }
         enctype='multipart/form-data'
       >
         <legend className='formTitle'>
-          {product ? 'Editar Producto' : 'Crear Producto'}
+          {console.log(product)}
+          {product && !product.error ? 'Editar Producto' : 'Crear Producto'}
         </legend>
         <div className='formInputsContainer'>
           <div className='formSection'>
             <div className='formGroup'>
               <label for='name'>Nombre del Producto</label>
               <input
+                required
                 type='text'
                 name='name'
                 value={nameProduct}
@@ -96,6 +125,7 @@ function FormProduct() {
             <div className='formGroup'>
               <label for='price'>Precio</label>
               <input
+                required
                 type='number'
                 name='price'
                 value={price}
@@ -107,6 +137,7 @@ function FormProduct() {
             <div className='formGroup'>
               <label for='brand'>Marca</label>
               <input
+                required
                 type='text'
                 name='brand'
                 value={brand}
@@ -117,14 +148,33 @@ function FormProduct() {
             </div>
             <div className='formGroup'>
               <label for='category'>Categoria</label>
-              <input
-                type='text'
+              <select
                 name='category'
-                value={category}
-                placeholder='Categoria'
-                className='inputProduct'
+                required
                 onChange={(event) => setCategory(event.target.value)}
-              />
+                className='inputProduct selectFormProduct'
+              >
+                {categoriesList
+                  ? (
+                    <>
+                      {categoriesList.map((category) => {
+                        return (
+                          <option
+                            key={category.id}
+                            value={category.nameCategory}
+                            selected={
+                            product &&
+                            category.nameCategory === product.category
+                          }
+                          >
+                            {category.nameCategory}
+                          </option>
+                        )
+                      })}
+                    </>
+                    )
+                  : null}
+              </select>
             </div>
           </div>
           <div className='separator' />
@@ -132,6 +182,7 @@ function FormProduct() {
             <div className='formGroup'>
               <label for='stock'>Cantidad disponible</label>
               <input
+                required
                 type='number'
                 name='stock'
                 value={stock}
@@ -142,18 +193,24 @@ function FormProduct() {
             </div>
             <div className='formGroup'>
               <label for='offer'>Producto en Oferta</label>
-              <input
-                type='text'
+              <select
                 name='offer'
-                value={offer}
-                placeholder='Producto en oferta'
-                className='inputProduct'
+                required
                 onChange={(event) => setOffer(event.target.value)}
-              />
+                className='inputProduct selectFormProduct'
+              >
+                <option value='1' selected={product && product.offer}>
+                  Si
+                </option>
+                <option value='0' selected={product && !product.offer}>
+                  no
+                </option>
+              </select>
             </div>
             <div className='formGroup'>
               <label for='offerPrice'>Precio de Oferta</label>
               <input
+                required={offer}
                 type='text'
                 name='offerPrice'
                 value={offerPrice}
@@ -168,7 +225,7 @@ function FormProduct() {
                 type='file'
                 name='image'
                 onChange={(event) => setImage(event.target.files[0])}
-                className='inputProduct'
+                className='inputProduct fileInput'
               />
             </div>
           </div>
@@ -177,6 +234,7 @@ function FormProduct() {
             <div className='formGroup'>
               <label for='description'>Descripción del producto</label>
               <textarea
+                required
                 name='description'
                 id='description'
                 value={description}
@@ -185,23 +243,38 @@ function FormProduct() {
                 onChange={(event) => setDescription(event.target.value)}
               />
             </div>
-            {product ? (
-              <div className='formGroup'>
-                <label for='description'>Imagen del producto</label>
-                <img
-                  src={`http://localhost:3500/img/products/${product.image}`}
-                  alt={`imagen de ${product.name}`}
-                  className='imagePreview'
-                />
-              </div>
-            ) : null}
+            {console.log(product)}
+            {product && !product.error && !productNull
+              ? (
+                <div className='formGroup'>
+                  <label for='description'>Imagen del producto</label>
+                  <img
+                    src={`http://localhost:3500/img/products/${product.image}`}
+                    alt={`imagen de ${product.name}`}
+                    className='imagePreview'
+                  />
+                </div>
+                )
+              : null}
           </div>
         </div>
 
         <button className='buttonProduct'>
-          {product ? 'Editar Producto' : 'Crear Producto'}
+          {product && !product.error ? 'Editar Producto' : 'Crear Producto'}
         </button>
       </form>
+    )
+  }
+
+  return (
+    <div className='container'>
+      {renderForm(!state ? null : product)}
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color='inherit' />
+      </Backdrop>
     </div>
   )
 }

@@ -1,0 +1,16 @@
+INSERT INTO category (nameCategory) VALUES ('cpu');
+INSERT INTO category (nameCategory) VALUES ('board');
+INSERT INTO category (nameCategory) VALUES ('gpu');
+INSERT INTO category (nameCategory) VALUES ('ram');
+INSERT INTO category (nameCategory) VALUES ('hdd');
+INSERT INTO category (nameCategory) VALUES ('audio');
+INSERT INTO category (nameCategory) VALUES ('chasis');
+INSERT INTO category (nameCategory) VALUES ('monitores');
+INSERT INTO category (nameCategory) VALUES ('teclado');
+INSERT INTO category (nameCategory) VALUES ('mouse');
+INSERT INTO category (nameCategory) VALUES ('torres');
+INSERT INTO category (nameCategory) VALUES ('portatiles');
+INSERT INTO category (nameCategory) VALUES ('sillas');
+INSERT INTO category (nameCategory) VALUES ('streaming');
+INSERT INTO category (nameCategory) VALUES ('fuente');
+INSERT INTO category (nameCategory) VALUES ('cooling');

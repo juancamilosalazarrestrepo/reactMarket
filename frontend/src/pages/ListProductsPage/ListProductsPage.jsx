@@ -4,16 +4,21 @@ import './ListProductsPage.css'
 import ProductList from '../../components/ProductsList/ProductsList'
 import Footer from '../../components/Footer/Footer'
 
-function ListProductsPage() {
+function ListProductsPage () {
   const category = useParams()
 
   return (
     <main className='contentProducts'>
       <NavBar />
-      {category ? <div className='categoryTitle'>Categoria : {category.category}</div> : ''}
+      {category.category
+        ? (
+          <div className='categoryTitle'>Categoria : {category.category}</div>
+          )
+        : (
+            ''
+          )}
       <div className='contentListProducts'>
-        {console.log(category)}
-        <ProductList category={category.category} />
+        <ProductList category={category.category ? category.category : 'all'} />
       </div>
       <Footer />
     </main>

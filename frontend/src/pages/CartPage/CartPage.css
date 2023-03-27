@@ -63,60 +63,57 @@
   width: 30%;
 }
 
-
 .cuantity,
 .totalValue {
   width: 15%;
 }
 
-.price{
+.price {
   width: 20%;
 }
 
-.priceOffer{
-  color:#00a650 ;
+.priceOffer {
+  color: #00a650;
   font-weight: 500;
 }
 
-.cuantity{
+.cuantity {
   display: flex;
   gap: 10px;
 }
 
-.cuantityControl{
+.cuantityControl {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
 }
 
-.cuantityButton{
+.cuantityButton {
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
-  background:#02315c;
+  background: #02315c;
   color: #fff;
   width: 30px;
   height: 30px;
   border-radius: 10px;
   font-weight: 500;
-  font-size:x-large;
+  font-size: x-large;
 }
 
-.cuantityButton:hover{
-  background:#5694cc;
+.cuantityButton:hover {
+  background: #5694cc;
 }
 
-
-
-.disabled{
-  background:#c1eafd;
+.disabled {
+  background: #c1eafd;
   color: #02315c;
 }
 
-.disabled:hover{
-  background:#c1eafd;
+.disabled:hover {
+  background: #c1eafd;
   color: #02315c;
 }
 
@@ -144,14 +141,14 @@
   font-weight: 500;
 }
 
-.totalPrice span{
+.totalPrice span {
   color: #00a650;
 }
 
 .buttonBuy {
   background-color: #02315c;
   width: 120px;
-  align-self: center; 
+  align-self: center;
   font-size: medium;
   border: none;
   height: 40px;
@@ -160,6 +157,6 @@
   border-radius: 4px;
 }
 
-.buttonBuy:hover{
+.buttonBuy:hover {
   background-color: #5694cc;
 }

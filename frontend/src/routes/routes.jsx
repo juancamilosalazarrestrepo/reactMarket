@@ -56,7 +56,7 @@ export const routes = (
         }
         exact
       />
-      <Route path='/*' element={<NotFoundPage/>} exact />
+      <Route path='/*' element={<NotFoundPage />} exact />
     </Routes>
   </BrowserRouter>
 )

@@ -21,7 +21,6 @@ const getOneProduct = async (id) => {
   return product
 }
 const createNewProduct = async (newProduct) => {
-  console.log('nuevo Usuario en el service', newProduct)
   const id = uuid()
   const createdProduct = await db.query(
     'INSERT INTO products (id,name,price,description,brand,category,image,stock,offer,offerPrice) VALUES (:id,:name,:price,:description,:brand,:category,:image,:stock,:offer,:offerPrice) ;',
@@ -41,7 +40,6 @@ const createNewProduct = async (newProduct) => {
       type: QueryTypes.INSERT
     }
   )
-  console.log('created product', createdProduct)
 
   return createdProduct
 }

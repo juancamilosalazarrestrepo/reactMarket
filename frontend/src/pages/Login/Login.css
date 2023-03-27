@@ -1,55 +1,52 @@
-.containerLogin{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ededed;
+.containerLogin {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ededed;
 }
 
-.loginForm{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 10px;   
-    gap:2rem;
-    width: 30%;
-    height: 370px;
-    background-color: #fefefe;
-    border-radius:19px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 10px;
+  gap: 2rem;
+  width: 30%;
+  height: 370px;
+  background-color: #fefefe;
+  border-radius: 19px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.formTitle{
-    font-size: x-large;
-    font-weight: 700;
+.formTitle {
+  font-size: x-large;
+  font-weight: 700;
 }
 
-
-.inputLogin{
-    width: 65%;
-    height: 30px;
-    border-radius: 10px;
-    border: 1px solid #ececec;
-    padding: 10px 15px;
-    box-shadow: 0 0 0 1px rgba(0,0,0,.25);
+.inputLogin {
+  width: 65%;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid #ececec;
+  padding: 10px 15px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
 }
 
-.inputLogin:focus-visible{
-    outline: none;
-    border: 1px solid #327EF2;
-    box-shadow: none;
-   
+.inputLogin:focus-visible {
+  outline: none;
+  border: 1px solid #327ef2;
+  box-shadow: none;
 }
 
 .buttonLogin {
-    background-color: #327EF2;
-    border: none;
-    height: 40px;
-    padding: 0 20px;
-    color: #ececec;
-    border-radius: 4px;
-    font-size: medium;
-    
+  background-color: #327ef2;
+  border: none;
+  height: 40px;
+  padding: 0 20px;
+  color: #ececec;
+  border-radius: 4px;
+  font-size: medium;
 }

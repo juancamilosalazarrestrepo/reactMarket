@@ -23,7 +23,6 @@ const getOneUser = async (id) => {
   return user
 }
 const createNewUser = async (newUser) => {
-  console.log('nuevo Usuario en el service', newUser)
   const id = uuid()
   const createdUser = await db.query(
     'INSERT INTO users (id,name,password,email,phone,role) VALUES (:id,:name,:password,:email,:phone,:role) ;',
@@ -39,7 +38,6 @@ const createNewUser = async (newUser) => {
       type: QueryTypes.INSERT
     }
   )
-  console.log('created user', createdUser)
 
   return createdUser
 }

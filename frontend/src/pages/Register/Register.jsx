@@ -8,7 +8,7 @@ import createUser from '../../services/usersService'
 import swal from 'sweetalert'
 import './Register.css'
 
-function Register() {
+function Register () {
   const [loading, setLoading] = useState(false)
   const {
     register,

@@ -10,7 +10,7 @@ function NotFoundPage () {
         <span>404</span>
         <p>Pagina No Encontrada</p>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   )
 }

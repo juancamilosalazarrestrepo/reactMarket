@@ -7,57 +7,54 @@
   justify-content: center;
 }
 
-.productContainer{
-    display: flex;
-    justify-content: space-around;
-    gap: 40px;
-    width: 900px;
-    height: 400px;
-    border-radius: 19px;
-    padding: 40px 70px;
-    margin:  40px 0 50px 0;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+.productContainer {
+  display: flex;
+  justify-content: space-around;
+  gap: 40px;
+  width: 900px;
+  height: 400px;
+  border-radius: 19px;
+  padding: 40px 70px;
+  margin: 40px 0 50px 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.productImg{
-width: 350px;
+.productImg {
+  width: 350px;
 }
 
-.productInfo{
-    padding-top: 40px;
+.productInfo {
+  padding-top: 40px;
 }
 
-
-.buttonAddToCar{
-    background-color: #02315c;
-    font-size: medium;
-    border: none;
-    height: 40px;
-    padding: 0 20px;
-    color: #ececec;
-    border-radius: 4px;
-    
+.buttonAddToCar {
+  background-color: #02315c;
+  font-size: medium;
+  border: none;
+  height: 40px;
+  padding: 0 20px;
+  color: #ececec;
+  border-radius: 4px;
 }
 
-.buttonAddToCar:hover{
-    background-color: #5694cc;
+.buttonAddToCar:hover {
+  background-color: #5694cc;
 }
 
-.productDescription{
-    max-height: 200px;
-    overflow-y: auto;
+.productDescription {
+  max-height: 200px;
+  overflow-y: auto;
 }
 
 .productDescription::-webkit-scrollbar {
-    width: 3px;
-    background-color: #d9dada;
-    padding: 4px !important;
-    box-sizing: border-box;
-  }
-  
-  .productDescription::-webkit-scrollbar-thumb {
-    width: 5px;
-    background-color: #02315c;
-    border-radius: 20px;
-  }
+  width: 3px;
+  background-color: #d9dada;
+  padding: 4px !important;
+  box-sizing: border-box;
+}
 
+.productDescription::-webkit-scrollbar-thumb {
+  width: 5px;
+  background-color: #02315c;
+  border-radius: 20px;
+}

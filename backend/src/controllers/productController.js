@@ -1,5 +1,4 @@
 const productService = require('../services/productService')
-const uploadFile = require('../middlewares/multerMiddleware')
 
 const getAllProducts = async (req, res) => {
   const allProducts = await productService.getAllProducts()
@@ -13,7 +12,6 @@ const getOneProduct = async (req, res) => {
 
 const createNewProduct = async (req, res) => {
   const { body } = req
-  console.log('bodyyyy', req.file)
   if (
     !body.name ||
     !body.price ||
@@ -36,16 +34,13 @@ const createNewProduct = async (req, res) => {
     offer: body.offer ? body.offer : 0,
     offerPrice: body.offerPrice ? body.offerPrice : 0
   }
-  console.log('create product', newProduct)
-  const createdProduct = await productService.createNewProduct(newProduct)
-  console.log('created product', createdProduct)
+  await productService.createNewProduct(newProduct)
   res.status(201).send({ status: 'OK' })
 }
 
 const updateOneProduct = (req, res) => {
   const { body } = req
- 
-  console.log('request', body)
+
   if (!body.name || !body.price || !body.description) {
     return
   }

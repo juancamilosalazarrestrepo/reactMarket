@@ -15,25 +15,22 @@ function NavBar () {
           </Link>
         </li>
         <li>
-          <Link to='/products' className='navLink'>
+          <Link
+            to='/products'
+            className='navLink'
+          >
             Productos
           </Link>
         </li>
-        <li>
-          <Link to='/' className='navLink'>
-            Computadores
-          </Link>
-        </li>
-        <li>
-          <Link to='/' className='navLink'>
-            Componentes
-          </Link>
-        </li>
-        <li>
-          <Link to='/' className='navLink'>
-            Accesorios
-          </Link>
-        </li>
+        {user
+          ? (
+            <li>
+              <Link to='/dashboard/products' state={{ user }} className='navLink'>
+                Panel Administrativo
+              </Link>
+            </li>
+            )
+          : null}
       </ul>
 
       <ul>

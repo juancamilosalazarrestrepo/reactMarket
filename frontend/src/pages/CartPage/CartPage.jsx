@@ -37,7 +37,6 @@ function CartPage () {
         return product
       })
 
-      console.log(products)
       setProductsInCart(products)
     }
   }, [cart, productsList])
@@ -50,7 +49,6 @@ function CartPage () {
         0
       )
       setTotalPrice(totalValue)
-      console.log(totalValue)
     }
   }, [productsInCart])
 
@@ -60,11 +58,9 @@ function CartPage () {
     setCartStorage(cartData)
 
     if (cartData) {
-      console.log(user)
       const cartUser = cartData.cartData.filter(
         (data) => data.emailUser === user.email
       )
-      console.log(cartUser)
       if (cartUser.length > 0) {
         setCart(cartUser[0].products)
       }
@@ -85,7 +81,6 @@ function CartPage () {
     const cartToEdit = cartOldData.filter(
       (data) => data.emailUser === user.email
     )
-    console.log(cartToEdit)
     cartToEdit[0].products = productsInCart
     window.localStorage.setItem('cart', JSON.stringify(cartStorage))
     getCartData()
@@ -97,62 +92,71 @@ function CartPage () {
         <span className='cartTitle'>Carrito de Compras</span>
         <div className='itemsContainer'>
           {productsInCart
-            ? productsInCart.map((product) => {
-              return (
-                <div key={product.id} className='productListItem'>
-                  <img
-                    src={`http://localhost:3500/img/products/${product.image}`}
-                    alt={`imagen de ${product.name}`}
-                    className='imgProductCart'
-                  />
-                  <span className='name'>{product.name}</span>
-                  {product.offer
-                    ? (
-                      <span className='price'>
-                        <strong>Precio Unitario :</strong> <span className='priceOffer'>$ {product.offerPrice}</span>
+            ? (
+                productsInCart.map((product) => {
+                  return (
+                    <div key={product.id} className='productListItem'>
+                      <img
+                        src={`http://localhost:3500/img/products/${product.image}`}
+                        alt={`imagen de ${product.name}`}
+                        className='imgProductCart'
+                      />
+                      <span className='name'>{product.name}</span>
+                      {product.offer
+                        ? (
+                          <span className='price'>
+                            <strong>Precio Unitario :</strong>{' '}
+                            <span className='priceOffer'>$ {product.offerPrice}</span>
+                          </span>
+                          )
+                        : (
+                          <span className='price'>
+                            <strong>Precio Unitario :</strong>$ {product.price}
+                          </span>
+                          )}
+                      <div className='cuantity'>
+                        <span>
+                          <strong>Cantidad :</strong>{' '}
+                        </span>
+                        <div className='cuantityControl'>
+                          <button
+                            className='cuantityButton'
+                            onClick={() =>
+                              handleQuantityProduct(product.id, 'plus')}
+                          >
+                            +
+                          </button>
+                          {product.cuantity}
+                          <button
+                            disabled={product.cuantity === 0}
+                            className={
+                          product.cuantity === 0
+                            ? 'cuantityButton disabled'
+                            : 'cuantityButton'
+                        }
+                            onClick={() =>
+                              handleQuantityProduct(product.id, 'minus')}
+                          >
+                            -
+                          </button>
+                        </div>
+                      </div>
+                      <span className='totalValue'>
+                        <strong>Valor Total :</strong> $ {product.totalValue}
                       </span>
-                      )
-                    : (
-                      <span className='price'>
-                        <strong>Precio Unitario :</strong>$ {product.price}
-                      </span>
-                      )}
-                  <div className='cuantity'>
-                    <span><strong>Cantidad :</strong>  </span>
-                    <div className='cuantityControl'>
-                      <button
-                        className='cuantityButton'
-                        onClick={() =>
-                          handleQuantityProduct(product.id, 'plus')}
-                      >
-                        +
-                      </button>
-                      {product.cuantity}
-                      <button
-                        disabled={product.cuantity === 0}
-                        className={
-                            product.cuantity === 0
-                              ? 'cuantityButton disabled'
-                              : 'cuantityButton'
-                          }
-                        onClick={() =>
-                          handleQuantityProduct(product.id, 'minus')}
-                      >
-                        -
-                      </button>
                     </div>
-                  </div>
-                  <span className='totalValue'>
-                    <strong>Valor Total :</strong> $ {product.totalValue}
-                  </span>
-                </div>
+                  )
+                })
               )
-            })
-            : <p>No tiene productos en el carrito</p>}
+            : (
+              <p>No tiene productos en el carrito</p>
+              )}
         </div>
 
         <div className='productListItem totalPriceRow'>
-          <span className='totalPrice '>Total a pagar: <span> $ {totalPrice}</span> </span>{' '}
+          <span className='totalPrice '>
+            Total a pagar: <span> $ {totalPrice}</span>{' '}
+          </span>{' '}
           <button className='buttonBuy'>Comprar</button>
         </div>
       </div>

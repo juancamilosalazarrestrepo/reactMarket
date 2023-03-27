@@ -1,4 +1,3 @@
-const path = require('path')
 const multer = require('multer')
 
 const storage = multer.diskStorage({
@@ -6,7 +5,6 @@ const storage = multer.diskStorage({
     cb(null, 'public/img/products')
   },
   filename: (req, file, cb) => {
-    console.log(file)
     const fileName = Date.now() + '-' + file.originalname
     cb(null, fileName)
   }
