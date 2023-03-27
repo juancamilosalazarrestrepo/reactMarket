@@ -1,4 +1,4 @@
-const login = async ({ email, password }) => {
+const login = async (email, password) => {
   console.log(email, password)
   let loginResponse = ''
   const data = {

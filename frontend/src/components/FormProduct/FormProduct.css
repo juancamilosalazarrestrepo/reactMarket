@@ -97,3 +97,8 @@ textarea{
     border-radius: 19px;
     padding: 25px 20px;
 }
+
+.imagePreview{
+    width: 170px;
+    align-self: center;
+}

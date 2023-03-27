@@ -54,6 +54,26 @@ export const createProduct = async (dataProduct) => {
   return product
 }
 
+export const editProduct = async (dataProduct, idProduct, user) => {
+  let product = []
+  await fetch(`http://localhost:3500/api/v1/products/${idProduct}`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Bearer ' + user.token
+    },
+    body: dataProduct
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      product = data
+    })
+    .catch((error) => {
+      product = error
+    })
+
+  return product
+}
+
 export const deleteProduct = async (idProduct, user) => {
   console.log('id product in service', user)
   let product = []

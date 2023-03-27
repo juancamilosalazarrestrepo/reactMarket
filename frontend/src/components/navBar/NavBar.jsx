@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom'
 import { useUser } from '../../hooks/useUser'
 import './NavBar.css'
 import logo from '../../assets/brand/logoarcadiat.png'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 
-function NavBar() {
+function NavBar () {
   const { user } = useUser()
   return (
     <div className='navBar'>
@@ -14,8 +15,8 @@ function NavBar() {
           </Link>
         </li>
         <li>
-          <Link to='/' className='navLink'>
-            Portatiles
+          <Link to='/products' className='navLink'>
+            Productos
           </Link>
         </li>
         <li>
@@ -35,24 +36,32 @@ function NavBar() {
         </li>
       </ul>
 
-      <ul className='navBarList'>
-        {user ? (
-          <li className='navLink'> {user.name}</li>
-        ) : (
-          <>
-            {' '}
-            <li>
-              <Link to='/login' className='navLink'>
-                Iniciar Sesion
-              </Link>
-            </li>
-            <li>
-              <Link to='/register' className='navLink'>
-                Registrarse
-              </Link>
-            </li>
-          </>
-        )}
+      <ul>
+        {user
+          ? (
+            <div className='userDataContainer'>
+              {' '}
+              <Link to='/cart' className='navLink iconLink'>
+                <ShoppingCartIcon />
+              </Link>{' '}
+              <li className='userName'> {user.name}</li>
+            </div>
+            )
+          : (
+            <div className='navBarList'>
+              {' '}
+              <li>
+                <Link to='/login' className='navLink'>
+                  Iniciar Sesion
+                </Link>
+              </li>
+              <li>
+                <Link to='/register' className='navLink'>
+                  Registrarse
+                </Link>
+              </li>
+            </div>
+            )}
       </ul>
     </div>
   )

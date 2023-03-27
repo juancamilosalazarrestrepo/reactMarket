@@ -16,14 +16,23 @@
 .navBarList {
   display: flex;
   align-items: center;
-  gap: 100px;
+  gap: 50px;
   padding: 0 80px;
-
 }
 
-.logo{
+.userDataContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 80px;
+}
+
+.userName {
+  font-weight: 500;
+}
+
+.logo {
   margin-top: 10px;
- 
 }
 
 .navLink {
@@ -32,7 +41,15 @@
   color: #00000099;
 }
 
-.navLink:hover{
+.iconLink {
+  padding-top: 5px;
+  color: #02315c;
+}
+.iconLink:hover {
+  color: #5694cc !important;
+}
+
+.navLink:hover {
   color: black;
 }
 

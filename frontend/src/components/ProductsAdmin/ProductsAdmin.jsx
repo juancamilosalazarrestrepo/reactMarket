@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useProducts } from '../../hooks/useProducts'
 import { useUser } from '../../hooks/useUser'
+import { useNavigate } from 'react-router'
 import { DataGrid } from '@mui/x-data-grid'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
@@ -8,16 +9,17 @@ import { deleteProduct } from '../../services/productsService'
 
 import './ProductsAdmin.css'
 
-function ProductsAdmin () {
+function ProductsAdmin() {
+  const navigate = useNavigate()
   const { productsList } = useProducts()
   const { user } = useUser()
   const [rows, setRows] = useState([
     {
       id: 1,
-      name: 'cargando',
-      price: 'cargando',
-      brand: 'cargando',
-      category: 'cargando'
+      name: '',
+      price: '',
+      brand: '',
+      category: ''
     }
   ])
 
@@ -82,7 +84,7 @@ function ProductsAdmin () {
         <button
           className='buttonTable'
           onClick={() => {
-            console.log(value.id)
+            navigate(`/dashboard/editproduct/${value.id}`)
           }}
         >
           <EditIcon />

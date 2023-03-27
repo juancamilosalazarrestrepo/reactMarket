@@ -1,8 +1,14 @@
-import { useState } from 'react'
-import { createProduct } from '../../services/productsService'
-import './CreateProduct.css'
+import { useState, useEffect } from 'react'
+import { createProduct, editProduct } from '../../services/productsService'
+import { useParams } from 'react-router-dom'
+import { useProductsById } from '../../hooks/useProductByID'
+import { useUser } from '../../hooks/useUser'
+import './FormProduct.css'
 
-function CreateProduct() {
+function FormProduct() {
+  const { idProduct } = useParams()
+  const { product } = useProductsById(idProduct)
+  const { user } = useUser()
   const [nameProduct, setNameProduct] = useState('')
   const [price, setPrice] = useState('')
   const [brand, setBrand] = useState('')
@@ -12,6 +18,20 @@ function CreateProduct() {
   const [offerPrice, setOfferPrice] = useState('')
   const [image, setImage] = useState(null)
   const [description, setDescription] = useState('')
+
+  useEffect(() => {
+    console.log(idProduct, product)
+    if (product) {
+      setNameProduct(product.name)
+      setPrice(product.price)
+      setBrand(product.brand)
+      setCategory(product.category)
+      setStock(product.stock)
+      setOffer(product.offer)
+      setOfferPrice(product.offerPrice)
+      setDescription(product.description)
+    }
+  }, [product])
 
   const handleCreateProduct = async (event) => {
     event.preventDefault()
@@ -27,33 +47,39 @@ function CreateProduct() {
     formData.append('offer', offer)
     formData.append('image', image)
 
-    const dataProduct = {
-      name: nameProduct,
-      price,
-      description,
-      brand,
-      category,
-      stock,
-      image,
-      offer,
-      offerPrice
-    }
-
     console.log('data', console.log(formData.getAll('image')))
 
-    console.log('data en el comoponn', dataProduct)
     const productCreated = await createProduct(formData)
     console.log(productCreated)
+  }
+
+  const handleEditProduct = async (event) => {
+    event.preventDefault()
+    console.log(image)
+    const formData = new FormData()
+    formData.append('name', nameProduct)
+    formData.append('price', price)
+    formData.append('description', description)
+    formData.append('brand', brand)
+    formData.append('category', category)
+    formData.append('stock', stock)
+    formData.append('offerPrice', offerPrice)
+    formData.append('offer', offer)
+    formData.append('image', image)
+
+    const productEdited = await editProduct(formData, idProduct, user)
   }
 
   return (
     <div className='container'>
       <form
         className='productForm'
-        onSubmit={handleCreateProduct}
+        onSubmit={product ? handleEditProduct : handleCreateProduct}
         enctype='multipart/form-data'
       >
-        <legend className='formTitle'>Crear Producto</legend>
+        <legend className='formTitle'>
+          {product ? 'Editar Producto' : 'Crear Producto'}
+        </legend>
         <div className='formInputsContainer'>
           <div className='formSection'>
             <div className='formGroup'>
@@ -159,13 +185,25 @@ function CreateProduct() {
                 onChange={(event) => setDescription(event.target.value)}
               />
             </div>
+            {product ? (
+              <div className='formGroup'>
+                <label for='description'>Imagen del producto</label>
+                <img
+                  src={`http://localhost:3500/img/products/${product.image}`}
+                  alt={`imagen de ${product.name}`}
+                  className='imagePreview'
+                />
+              </div>
+            ) : null}
           </div>
         </div>
 
-        <button className='buttonProduct'>Crear Producto</button>
+        <button className='buttonProduct'>
+          {product ? 'Editar Producto' : 'Crear Producto'}
+        </button>
       </form>
     </div>
   )
 }
 
-export default CreateProduct
+export default FormProduct

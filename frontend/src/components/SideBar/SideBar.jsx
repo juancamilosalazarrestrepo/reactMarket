@@ -6,28 +6,16 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd'
 import AddToQueueIcon from '@mui/icons-material/AddToQueue'
 import './SideBar.css'
 
-function SideBar () {
+function SideBar() {
   return (
     <div className='sideBar'>
       <div>
-        <img src={logo} alt='' className='logo' />
+        <Link to='/' >
+          <img src={logo} alt='' className='logo' />
+        </Link>
       </div>
       <div className='navigation'>
         <ul>
-          <li>
-            <Link to='/dashboard/usuarios' className='navigationItem'>
-              {' '}
-              <PeopleAltIcon />
-              Usuarios
-            </Link>
-          </li>
-          <li>
-            <Link to='/dashboard/usuarios' className='navigationItem'>
-              {' '}
-              <PersonAddIcon />
-              Crear Usuario
-            </Link>
-          </li>
           <li>
             <Link to='/dashboard/products' className='navigationItem'>
               {' '}

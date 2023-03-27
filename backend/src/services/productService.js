@@ -47,7 +47,9 @@ const createNewProduct = async (newProduct) => {
 }
 const updateOneProduct = async (id, productUpdate) => {
   const updatedProduct = await db.query(
-    'UPDATE products SET name = :newName, email = :newEmail WHERE id = :id',
+    'UPDATE products SET name = :name, price = :price , description = :description , brand = :brand , category = :category ' +
+      (productUpdate.image ? `,image = '${productUpdate.image}'` : '') +
+      ', stock = :stock , offer = :offer , offerPrice = :offerPrice WHERE id = :id',
     {
       replacements: {
         id,
@@ -56,7 +58,6 @@ const updateOneProduct = async (id, productUpdate) => {
         description: productUpdate.description,
         brand: productUpdate.brand,
         category: productUpdate.category,
-        image: productUpdate.image,
         stock: productUpdate.stock,
         offer: productUpdate.offer,
         offerPrice: productUpdate.offerPrice

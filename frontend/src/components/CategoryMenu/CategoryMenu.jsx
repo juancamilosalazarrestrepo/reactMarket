@@ -24,7 +24,7 @@ import coolerIcon from '../../assets/icons/icono-cooling.png'
 
 import './CategoryMenu.css'
 
-function CategoryMenu () {
+function CategoryMenu() {
   const categories = [
     {
       name: 'CPU',
@@ -105,14 +105,10 @@ function CategoryMenu () {
           {categories.map((category, index) => {
             return (
               <SwiperSlide className='categoryItem' key={index}>
-                {' '}
-                <img
-                  src={category.icon}
-                  width={67}
-                  //sizes="(max-width: 640px) 700px , (min-width:1000px) 1920px"
-                  // srcset="../../public/images/eficience.jpg x1 , ../../banner2.webp x2 , ../../banneBlog.webp x3"
-                />
-                <p className='categoryName'>{category.name}</p>
+                <Link to={`/products/${category.name}`} className='categoryLink'>
+                  <img src={category.icon} width={67} />
+                  <p className='categoryName'>{category.name}</p>
+                </Link>
               </SwiperSlide>
             )
           })}

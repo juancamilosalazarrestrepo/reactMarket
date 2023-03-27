@@ -10,7 +10,7 @@ import './ProductSwipe.css'
 function ProductSwipe ({ productsList }) {
   return (
     <div className='swiperContainer'>
-      <div className='productsContainer'>
+      <div className='productsContainerSwiper'>
         <Swiper
           className='productSwiper'
           slidesPerView={3}
